@@ -1,4 +1,4 @@
-from stdtobids import mappers
+from reorganizer import mappers
 
 incoming_to_native = [
     mappers.Incoming2NativeMap.from_str(

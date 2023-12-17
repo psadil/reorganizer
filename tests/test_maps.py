@@ -7,8 +7,8 @@ import pytest
 import hypothesis
 from hypothesis import strategies as st
 
-from stdtobids.data import ukb
-from stdtobids import convert
+from reorganizer.data import ukb
+from reorganizer import convert
 
 
 PATH_ALPHABET = string.ascii_letters + string.digits + "._-/"

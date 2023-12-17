@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "stdtobids"
+name = "reorganizer"
 dynamic = ["version"]
 description = ''
 readme = "README.md"
@@ -19,18 +19,22 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+
+dependencies = ["pydantic"]
 
 [project.urls]
-Documentation = "https://github.com/unknown/stdtobids#readme"
-Issues = "https://github.com/unknown/stdtobids/issues"
-Source = "https://github.com/unknown/stdtobids"
+Documentation = "https://github.com/unknown/reorganizer#readme"
+Issues = "https://github.com/unknown/reorganizer/issues"
+Source = "https://github.com/unknown/reorganizer"
+
+[project.optional-dependencies]
+test = ["hypothesis", "pytest"]
 
 [tool.hatch.version]
-path = "src/stdtobids/__about__.py"
+path = "src/reorganizer/__about__.py"
 
 [tool.hatch.envs.default]
-dependencies = ["coverage[toml]>=6.5", "pydantic", "pytest"]
+dependencies = ["coverage[toml]>=6.5", "pytest"]
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
 test-cov = "coverage run -m pytest {args:tests}"
@@ -43,17 +47,17 @@ python = ["3.11", "3.12"]
 [tool.hatch.envs.types]
 dependencies = ["mypy>=1.0.0"]
 [tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/stdtobids tests}"
+check = "mypy --install-types --non-interactive {args:src/reorganizer tests}"
 
 [tool.coverage.run]
-source_pkgs = ["stdtobids", "tests"]
+source_pkgs = ["reorganizer", "tests"]
 branch = true
 parallel = true
-omit = ["src/stdtobids/__about__.py"]
+omit = ["src/reorganizer/__about__.py"]
 
 [tool.coverage.paths]
-stdtobids = ["src/stdtobids", "*/stdtobids/src/stdtobids"]
-tests = ["tests", "*/stdtobids/tests"]
+reorganizer = ["src/reorganizer", "*/reorganizer/src/reorganizer"]
+tests = ["tests", "*/reorganizer/tests"]
 
 [tool.coverage.report]
 exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]

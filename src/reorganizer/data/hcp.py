@@ -1,4 +1,4 @@
-from stdtobids import mappers
+from reorganizer import mappers
 
 
 native_to_bids = [

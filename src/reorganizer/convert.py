@@ -2,7 +2,7 @@ from pathlib import Path
 import typing
 import os
 
-from stdtobids import mappers
+from reorganizer import mappers
 
 
 def _attempt_map(
