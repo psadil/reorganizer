@@ -8,6 +8,16 @@ from reorganizer import mappers
 def _attempt_map(
     src: Path, dst: Path, incoming_to_natives: list[mappers.Incoming2NativeMap]
 ) -> Path | None:
+    """_summary_
+
+    Args:
+        src: File on which conversion will be attempted.
+        dst: Root underneath which the mapped file will be placed.
+        incoming_to_natives: List of mappings to attempt.
+
+    Returns:
+        Path | None: If a mapping was found, the mapped file, else `None`.
+    """
     for mapping in incoming_to_natives:
         if mapping.src_pattern.search(str(src)):
             return mapping.map(src, outroot=dst)

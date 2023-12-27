@@ -37,6 +37,11 @@ class Incoming2NativeMap(pydantic.BaseModel):
 
 
 def unpack_archive(src: Path, dst: Path) -> Path:
+    if dst.exists():
+        logging.warning(
+            f"extracting {src} would create {dst}, but that already exists. Skipping."
+        )
+        return dst
     logging.info(f"extracting {src} -> {dst}")
     shutil.unpack_archive(src, extract_dir=dst)
     src.unlink()
@@ -44,6 +49,11 @@ def unpack_archive(src: Path, dst: Path) -> Path:
 
 
 def move(src: Path, dst: Path) -> Path:
+    if dst.exists():
+        logging.warning(
+            f"Skipping moving {src} -> {dst} because it already exists."
+        )
+        return dst
     logging.info(f"moving {src} -> {dst}")
     if not (parent := dst.parent).exists():
         parent.mkdir(parents=True)
