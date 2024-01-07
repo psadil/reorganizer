@@ -20,7 +20,7 @@ native_to_bids = [
         repl=r"ses-\g<ses>/func/sub-\g<sub>_ses-\g<ses>_task-rest_bold.\g<ext>",
         mapper=mappers.move,
     ),
-    # 20249 - Resting fMRI
+    # 20249 - Task fMRI
     mappers.Incoming2NativeMap.from_str(
         src_pattern=r"(?P<sub>\d+)_20227_(?P<ses>\d{1})_0/fMRI/tfMRI_SBREF\.(?P<ext>nii\.gz|json)\Z",
         repl=r"ses-\g<ses>/func/sub-\g<sub>_ses-\g<ses>_task-hariri_sbref.\g<ext>",

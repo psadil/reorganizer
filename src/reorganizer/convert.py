@@ -37,10 +37,15 @@ def convert_flat(
 
 
 def convert_recursively(
-    src: Path, dst: Path, incoming_to_natives: list[mappers.Incoming2NativeMap]
+    src: Path,
+    dst: Path,
+    incoming_to_natives: list[mappers.Incoming2NativeMap],
+    exclude_dirs: list[str] = [".git", ".datalad"],
 ) -> list[Path] | list[typing.Never]:
     out = []
     for r, dirs, _ in os.walk(src, topdown=False):
+        if any(part in exclude_dirs for part in r.split("/")):
+            continue
         root = Path(r)
         for d in dirs + [root]:
             if mapped := convert_flat(
